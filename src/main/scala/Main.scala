@@ -4,7 +4,7 @@ object Main extends App {
   println("Hello, " ++ "Scala!")
 
 
-  def fizzBuzz(numbers: Array[Int]): Array[String] = {
+  def fizzBuzz(numbers: Seq[Int]): Seq[String] = {
 
     val isBuzz: Int => String = { number =>
       if (Math.abs(number%5)==0)
@@ -24,13 +24,15 @@ object Main extends App {
       if (isFizz(number) == "Fizz" || isBuzz(number) == "Buzz") "" else number.toString
     }
 
-    val strings:Array[String] = numbers.map(number => {
+    val strings:Seq[String] = numbers.map(number => {
       isNumber(number) + isFizz(number) + isBuzz(number)
     })
 
     strings
   }
 
-  val numbers = (1 to 100).toArray
-  fizzBuzz(numbers).foreach(value => println(value))
+  val numbers = (1 to 100).toSeq
+  fizzBuzz(numbers).foreach(value => print(s"$value"))
+
+  println(fizzBuzz(Seq()))
 }
